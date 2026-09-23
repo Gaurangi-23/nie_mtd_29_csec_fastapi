@@ -32,3 +32,17 @@ def ticket_helper(ticket_doc):
         "category" : ticket_doc["category"],
         "status" : ticket_doc["status"]
     }
+    
+#apis - CRUD - create, read all, read by id, update, delete
+@app.post("/tickets", status_code=201, response_model=TicketResponse)
+def ticket_create(payload: TicketCreate):
+    ticket_dict = payload.model_dump()
+    result = ticket_collection.insert_one(ticket_dict)
+    new_ticket = ticket_collection.find_one({"id" : result.inserted_id})
+    return ticket_helper(new_ticket)
+
+@app.get("/tickets", response_model = list[TicketResponse])
+def ticket_read_all():
+    docs = ticket_collection.find()
+    tickets = [ticket_helper(doc) for doc in docs]
+    return tickets
