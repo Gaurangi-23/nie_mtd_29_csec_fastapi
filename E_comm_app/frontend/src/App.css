@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    background-color: #f5f6fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container {
+    margin-top: 80px;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.table {
+    background-color: white;
+}
+
+textarea {
+    resize: vertical;
+}
